@@ -10,17 +10,25 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     /**
+     * Returns the size of the tree
+     * @return
+     */
+    public int getSize(){
+        return this.size;
+    }
+
+    /**
      * Adds another node into the Binary Tree
      * @param data
      * @return this binary tree
      */
     public BinaryTree add(T data) {
+        size += 1;
         if (head == null) {
             head = new Node(data);
             return this;
         }
         addToNode(head, data);
-        size += 1;
         return this;
     }
 
@@ -47,6 +55,11 @@ public class BinaryTree<T extends Comparable<T>> {
         }
     }
 
+    /**
+     * Checks if a node with specific data exists in the tree
+     * @param data
+     * @return boolean
+     */
     public boolean isNodeAvailable(T data){
         return findNode(head, data) != null;
     }

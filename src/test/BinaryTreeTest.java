@@ -15,4 +15,15 @@ public class BinaryTreeTest {
 
         assert tree.isNodeAvailable(4);
     }
+
+    @Test
+    public void testBinaryTreeSize(){
+        BinaryTree<String> tree = new BinaryTree<>();
+        String[] strings = {"we", "will", "rock", "you"};
+        for(String s : strings) {
+            tree.add(s);
+        }
+
+        assert tree.getSize() == strings.length;
+    }
 }
