@@ -92,8 +92,12 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
 
-
-
+    /**
+     * Implementation of the tree Node
+     * @param data
+     * @param left
+     * @param right
+     */
     private class Node<T extends Comparable<T>> {
         T data = null;
         Node<T> left = null;
