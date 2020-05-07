@@ -10,7 +10,7 @@ public class BinaryTreeTest {
         BinaryTree<Integer> tree = new BinaryTree<>();
         Integer[] integers = {1,5,2,3,8,6,4};
         for(int i : integers) {
-            tree.add(i);
+            tree.insert(i);
         }
 
         assert tree.isNodeAvailable(4);
@@ -21,7 +21,7 @@ public class BinaryTreeTest {
         BinaryTree<String> tree = new BinaryTree<>();
         String[] strings = {"we", "will", "rock", "you"};
         for(String s : strings) {
-            tree.add(s);
+            tree.insert(s);
         }
 
         assert tree.getSize() == strings.length;

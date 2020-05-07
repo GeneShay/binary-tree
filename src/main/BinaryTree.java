@@ -1,11 +1,15 @@
 package main;
 
-public class BinaryTree<T extends Comparable<T>> {
-    Node<T> head;
-    int size;
+import java.util.MissingResourceException;
+import java.util.logging.Logger;
 
-    public BinaryTree() {
-        head = null;
+public class BinaryTree<T extends Comparable<T>> {
+    Node<T> root;
+    int size;
+    protected static Logger LOGGER = Logger.getLogger("LOGGER");;
+
+    public BinaryTree() throws MissingResourceException {
+        root = null;
         size = 0;
     }
 
@@ -22,13 +26,13 @@ public class BinaryTree<T extends Comparable<T>> {
      * @param data
      * @return this binary tree
      */
-    public BinaryTree add(T data) {
+    public BinaryTree insert(T data) {
         size += 1;
-        if (head == null) {
-            head = new Node(data);
+        if (root == null) {
+            root = new Node(data);
             return this;
         }
-        addToNode(head, data);
+        addToNode(root, data);
         return this;
     }
 
@@ -38,6 +42,7 @@ public class BinaryTree<T extends Comparable<T>> {
      * @param data
      */
     private void addToNode(Node node, T data) {
+
         if(node.data.compareTo(data) < 0) {
             // If current Node is smaller than new one - look right
             if (node.right != null) {
@@ -61,26 +66,27 @@ public class BinaryTree<T extends Comparable<T>> {
      * @return boolean
      */
     public boolean isNodeAvailable(T data){
-        return findNode(head, data) != null;
+        return findNode(root, data) != null;
     }
 
     /**
      * Traverses to tree to find the matching node
      * @param node
      * @param data
-     * @return
+     * @return List<Node, ParentNode>
      */
+    private Node parentNode;
     private Node findNode(Node node, T data) {
         if(node == null)
             return null;
 
         if(node.data.compareTo(data) < 0) {
-            System.out.println("Looked Right on this node: " + node.data);
             // look right
+            LOGGER.info("Looked Right on this node: " + node.data);
             return findNode(node.right, data);
-        } else if (node.data.compareTo(data) < 0) {
-            System.out.println("Looked Left on this node: " + node.data);
+        } else if (node.data.compareTo(data) > 0) {
             //look left
+            LOGGER.info("Looked Left on this node: " + node.data);
             return findNode(node.left, data);
         } else {
             return node;
